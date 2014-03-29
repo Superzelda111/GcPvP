@@ -1,0 +1,5 @@
+name: GcPvP
+main: tk.GcPvP.GcPvP
+version: 0.0.0.1-DEV
+commands:
+  kit:
