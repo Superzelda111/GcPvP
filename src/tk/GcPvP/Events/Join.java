@@ -24,31 +24,41 @@ public class Join implements Listener {
 
 		if (!player.hasPermission("gcpvp.vip")) {
 			Potions.giveDefault(plugin, player);
-			
+			Kit.giveDefaultKit(plugin, player);
+
 			event.setJoinMessage(null);
-		}else{
+		} else {
 			Potions.giveVIP(plugin, player);
-			event.setJoinMessage(plugin.getConfig().getString("Messages.Quit.VIP").replace("%player%", player.getName()));
+			event.setJoinMessage(plugin.getConfig()
+					.getString("Messages.Quit.VIP")
+					.replace("%player%", player.getName()));
 			Potions.giveDefault(plugin, player);
+			Kit.giveVIPKit(plugin, player);
+		}
+		if (player.isOp()) {
+			event.setJoinMessage(plugin.getConfig()
+					.getString("Messages.Join.OP")
+					.replace("%player%", player.getName()));
+			Potions.giveOP(plugin, player);
 			Kit.giveDefaultKit(plugin, player);
 		}
-		if(player.isOp()){
-			event.setJoinMessage(plugin.getConfig().getString("Messages.Join.OP").replace("%player%", player.getName()));
-			Potions.giveOP(plugin, player);
-		}
 	}
-	
+
 	@EventHandler
-	public void onQuit(PlayerQuitEvent event){
+	public void onQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
-		if(player.isOp()){
-		event.setQuitMessage(plugin.getConfig().getString("Messages.Quit.OP").replace("%player%", player.getName()));
-	}else if (!player.hasPermission("gcpvp.vip")) {
+		if (player.isOp()) {
+			event.setQuitMessage(plugin.getConfig()
+					.getString("Messages.Quit.OP")
+					.replace("%player%", player.getName()));
+		} else if (!player.hasPermission("gcpvp.vip")) {
 			event.setQuitMessage(null);
-		}else{
+		} else {
 			plugin.getConfig().getString("Messages.Quit.VIP");
-			event.setQuitMessage(plugin.getConfig().getString("Messages.Quit.VIP").replace("%player%", player.getName()));
+			event.setQuitMessage(plugin.getConfig()
+					.getString("Messages.Quit.VIP")
+					.replace("%player%", player.getName()));
 		}
 	}
-	
+
 }

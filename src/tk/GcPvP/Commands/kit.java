@@ -10,9 +10,10 @@ import tk.GcPvP.Methods.Kit;
 import tk.GcPvP.Methods.Potions;
 
 public class kit implements CommandExecutor {
-	
+
 	public static GcPvP plugin;
-	public kit(GcPvP instance){
+
+	public kit(GcPvP instance) {
 		plugin = instance;
 	}
 
@@ -20,9 +21,12 @@ public class kit implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
 		Player player = (Player) sender;
-		if(label.equalsIgnoreCase("kit")){
+		if (label.equalsIgnoreCase("kit")) {
 			Potions.giveDefault(plugin, player);
 			Kit.giveDefaultKit(plugin, player);
+		}
+		if(args.length == 1 && args[0].equalsIgnoreCase("god")){
+			Kit.giveGodKit(plugin, player);
 		}
 		return false;
 	}

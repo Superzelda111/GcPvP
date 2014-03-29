@@ -6,9 +6,9 @@ import tk.GcPvP.Commands.*;
 import tk.GcPvP.Events.*;
 
 public class GcPvP extends JavaPlugin {
-	
+
 	public static GcPvP plugin;
-	
+
 	@Override
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(new Join(this), this);
